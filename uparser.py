@@ -204,7 +204,24 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
             g.answer += t[i] + ' '
             i += 2
         g.answer.strip()
-    return g.answer
+        return g.answer
+    if clearflag == 2:
+        t = g.words.outputText
+        t = t.split('"')
+        print(t)
+        ln = len(t)
+        i = 1
+        g.answer = ''
+        text_replacer=TextReplacer()
+        while i < ln:
+            if len(t[i])>1 and ord(t[i][0])<128 and ord(t[i][0])>=65:
+                temp = text_replacer.apply_replacements_by_phonems(t[i])
+                g.answer += temp
+            elif len(t[i])==1 and ord(t[i][0])<128 and ord(t[i][0])>=65:
+                g.answer += t[i]
+            i += 1
+        g.answer.strip()
+        return g.answer
 
 if __name__ == '__main__':
 

@@ -26,9 +26,9 @@ parsed_output_string = wordparse(<word : str>, <lsflag : int>, <wfflag : int>, <
 
 ## Examples
 
+check run_parser_all_lang_all_opt.py file for the use of wordparse function.
+
+
+
 ## URLS
 [Homepage](https://github.com/vikram-kv/Unified_Parser)
-
-## Authors
-
-Vikram K V, Dual Degree, Computer Science Dept, IIT Madras.
