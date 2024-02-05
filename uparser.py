@@ -10,6 +10,7 @@ from globals import *
 from helpers import *
 import sys
 from sys import exit
+from get_phone_mapped_python import *
 
 # tokens used
 tokens = ('kaki_c', 'conjsyll2_c', 'fullvowel_b', 'kaki_a', 'kaki_b',  'conjsyll2_b', 'conjsyll2_a',
@@ -85,7 +86,7 @@ def printHelp():
     print("wd - word to parse in unicode.")
     print("lsflag - always 0. we are not using this.")
     print("wfflag - 0 for Monophone parsing, 1 for syllable parsing, 2 for Akshara Parsing")
-    print("clearflag - 1 for removing the lisp like format of output and to just produce space separated output. Otherwise, 0.")
+    print("clearflag -0. for normal syntx, 1 for removing the lisp like format of output and to just produce space separated output.  2 for cls labled output")
 
 
 def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
@@ -139,8 +140,8 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
     g.words.syllabifiedWordOut = LangSpecificCorrection(g, g.words.syllabifiedWordOut, g.flags.LangSpecificCorrectionFlag)
     if(g.flags.DEBUG):
         print(f"Syllabified Word langCorr : {g.words.syllabifiedWordOut}")
-    if(g.flags.DEBUG):
-        print(f"Syllabified Word gemCorr : {g.words.syllabifiedWordOut}")
+    # if(g.flags.DEBUG):
+    #     print(f"Syllabified Word gemCorr : {g.words.syllabifiedWordOut}")
     g.words.syllabifiedWordOut = CleanseWord(g.words.syllabifiedWordOut)
     if(g.flags.DEBUG):
         print(f"Syllabified Word memCorr : {g.words.syllabifiedWordOut}")
