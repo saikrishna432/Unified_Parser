@@ -87,9 +87,9 @@ def printHelp():
     print("lsflag - always 0. we are not using this.")
     print("wfflag - 0 for Monophone parsing, 1 for syllable parsing, 2 for Akshara Parsing")
     print("clearflag -0. for normal syntx, 1 for removing the lisp like format of output and to just produce space separated output.  2 for cls labled output")
+    print("language - name of language in quationes")
 
-
-def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
+def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_main :str):
     g = GLOBALS()
     lexer = Lexer()
     parser = yacc()
@@ -130,6 +130,13 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
     if g.flags.DEBUG:
         print(f"Symbols code : {g.words.unicodeWord}")
         print(f"Symbols syllables : {g.words.syllabifiedWord}")
+
+    if language_main == "sanskrit":
+        g.currLang = g.TELUGU
+        g.langId = 3
+        if(g.langId < 5):
+            g.isSouth = 1
+        print("language:",language_main)
 
     parser.parse(g.words.syllabifiedWord, lexer=lexer)
     if(g.flags.DEBUG):
@@ -226,9 +233,9 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int):
 
 if __name__ == '__main__':
 
-    if (len(sys.argv) != 5):
+    if (len(sys.argv) != 6):
         printHelp()
         exit(-1)
     
-    ans = wordparse(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
+    ans = wordparse(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]),str(sys.argv[5]))
     print(ans)
