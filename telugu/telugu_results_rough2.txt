@@ -1,0 +1,6 @@
+లోక్‌సభ = (set! wordstruct '( (( "l" "oo" "k" ) 0) (( "s" "a" ) 0) (( "bh" "a" ) 0) ))
+అగ్నిపరీక్ష = (set! wordstruct '( (( "a" "g" ) 0) (( "n" "i" ) 0) (( "p" "a" ) 0) (( "r" "ii" "k" ) 0) (( "sx" "a" ) 0) ))
+అంతమాత్రాన = (set! wordstruct '( (( "a" "q" ) 0) (( "t" "a" ) 0) (( "m" "aa" "t" ) 0) (( "r" "aa" ) 0) (( "n" "a" ) 0) ))
+కష్టపడ్డాను = (set! wordstruct '( (( "k" "a" "sx" ) 0) (( "tx" "a" ) 0) (( "p" "a" ) 0) (( "dx" "dx" "aa" ) 0) (( "n" "u" ) 0) ))
+असफल = (set! wordstruct '( (( "a" "s" ) 0) (( "ph" "a" "l" ) 0) ))
+অরবিন্দ = (set! wordstruct '( (( "a" "r" ) 0) (( "b" "i" "n" "d" ) 0) ))

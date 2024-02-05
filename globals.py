@@ -59,12 +59,12 @@ class GLOBALS:
         self.syllableList = []
 
         self.VOWELSSIZE=18
-        self.CONSONANTSSIZE=25
-        self.SEMIVOWELSSIZE=13
+        self.CONSONANTSSIZE=36
+        self.SEMIVOWELSSIZE=2
 
         self.VOWELS = ["a","e","i","o","u","aa","mq","aa","ii", "uu","rq","au","ee","ei","ou","oo","ax","ai"]
-        self.CONSONANTS = ["k","kh","g","gh","ng","c","ch","j","jh","nj","tx","txh","dx","dxh","nx","t","th","d","dh","n","p","ph","b","bh","m"]
-        self.SEMIVOWELS = ["y","r","l","w","sh","sx","zh","s","h","lx","rx","f","dxq"]
+        self.CONSONANTS = ["k","kh","g","gh","ng","c","ch","j","jh","nj","tx","txh","dx","dxh","nx","t","th","d","dh","n","p","ph","b","bh","m","r","l","sh","sx","zh","s","h","lx","rx","f","dxq"]
+        self.SEMIVOWELS = ["y","w"]
 
         # variable to indicate current language being parsed.
         self.currLang = self.ENGLISH
