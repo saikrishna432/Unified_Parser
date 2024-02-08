@@ -136,7 +136,7 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
         g.langId = 3
         if(g.langId < 5):
             g.isSouth = 1
-        print("language:",language_main)
+        # print("language:",language_main)
 
     parser.parse(g.words.syllabifiedWord, lexer=lexer)
     if(g.flags.DEBUG):
@@ -202,6 +202,8 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
     SplitSyllables(g,g.words.syllabifiedWordOut)
     
     WritetoFiles(g)
+    if clearflag == 0:
+        return g.answer
     if clearflag == 1:
         t = g.words.outputText
         t = t.split('"')
@@ -216,7 +218,7 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
     if clearflag == 2:
         t = g.words.outputText
         t = t.split('"')
-        print(t)
+        # print(t)
         ln = len(t)
         i = 1
         g.answer = ''
@@ -230,6 +232,17 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
             i += 1
         g.answer.strip()
         return g.answer
+
+
+def safe_word_parse(wd : str, lsflag : int, wfflag : int, clearflag : int,language : str):
+    try:
+        ans = wordparse(wd, lsflag, wfflag, clearflag,language)
+        # print(ans) 
+    except:
+        print(f'failed on {wd}')
+        ans = 'FAILED'
+    return wd, ans,
+
 
 if __name__ == '__main__':
 
