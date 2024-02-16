@@ -925,3 +925,102 @@ def WritetoFiles(g : GLOBALS) -> int:
     
     WriteFile(g, g.words.outputText)
     return 1
+
+
+def load_mapping_file(g: GLOBALS):
+    # open common file
+    try:
+        # print('1.entered')
+        with open("common_telugu.map", 'r') as infile:
+            lines = infile.readlines()
+            # print(lines)
+    except:
+        print("Couldn't open common file for reading")
+        return 0
+
+    table=[]
+    for i in range(len(lines)):
+        l = lines[i].strip().split('\t')
+        table.append(l)
+
+        # g.symbolTable[i][1] = l[1]
+        # g.symbolTable[i][0] = l[1 + g.langId]
+
+    return table
+
+def set_lang_id(language):
+    if language == "malayalam":
+        lang_id=1
+    elif language == "tamil":
+        lang_id=2
+    elif language == "telugu":
+        lang_id=3
+    elif language == "kannada":
+        lang_id=4
+    elif language == "hindi":
+        lang_id=5
+    elif language == "bengali":
+        lang_id=6
+    elif language == "gujrathi":
+        lang_id=7
+    elif language == "odiya":
+        lang_id=8
+    elif language == "punjabi":
+        lang_id=9
+    return lang_id
+
+
+def convert_to_main_lang(g : GLOBALS,input_str,final_lang:str):  
+    s= input_str
+    # print("input_str:",input_str)
+    final_lang_id=set_lang_id(final_lang)
+    c=1
+    # print(s,final_lang_id)
+    temp_string=''
+    new_string='&'
+    table=load_mapping_file(g)
+    # print(final_lang_id)
+    # print(table)
+    for i in range(1,len(s)):
+        if s[i]=="&":
+            c=1
+            continue
+        if c==1:
+            temp_string+=s[i]
+            if s[i+1]=="&":
+                c=0
+                # print("new_string_1:",new_string)
+                # print("old_string_1:",temp_string)
+                if temp_string=="#":
+                    new_string+=temp_string+"&"
+                    temp_string=''
+                    continue
+                if temp_string =='av'or temp_string =='aiv':
+                    new_string+=temp_string+"&"
+                    temp_string=''
+                    # print("new_string_1-av/aiv:",new_string)
+                    continue
+                if temp_string =='eu':
+                    new_string+=temp_string+"&"
+                    # print("new_string_1-eu:",new_string)
+                    # print("old_string_1-euv:",s)
+                    temp_string=''
+                    continue
+
+                # print("new_string_before_table:",new_string)
+                # print("old_string_before_table:",s)
+                for j in range(len(table)):                    
+                    if table[j][1]==temp_string: 
+                        # print("2:",table[j][1],temp_string)   
+                        # print("3:",table[j][final_lang_id+1],ord(table[j][final_lang_id+1][0]))   
+                        if ord(table[j][final_lang_id+1][0]) < 122:
+                            new_string=new_string+table[j][final_lang_id+1]+"&"
+                            temp_string=''
+                            # print("new string_2:",new_string)
+                            break                            
+                        else:
+                            new_string+=temp_string+"&"
+                            # print("new string_3:",new_string)
+                            temp_string=''
+                            break
+    return new_string

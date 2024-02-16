@@ -136,7 +136,7 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
         g.langId = 3
         if(g.langId < 5):
             g.isSouth = 1
-        # print("language:",language_main)
+        print("language:",language_main)
 
     parser.parse(g.words.syllabifiedWord, lexer=lexer)
     if(g.flags.DEBUG):
@@ -200,7 +200,12 @@ def wordparse(wd : str, lsflag : int, wfflag : int, clearflag : int,language_mai
     g.words.syllabifiedWordOut = Syllabilfy(g.words.syllabifiedWordOut)
     
     SplitSyllables(g,g.words.syllabifiedWordOut)
-    
+    temp_list=g.syllableList
+    if g.flags.DEBUG:
+        print("temp_list_1",temp_list)
+    for i in range(len(temp_list)):
+        temp_list[i]=convert_to_main_lang (g,temp_list[i], language_main)
+
     WritetoFiles(g)
     if clearflag == 0:
         return g.answer
